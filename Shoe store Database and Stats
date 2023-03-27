@@ -1,0 +1,35 @@
+~Create a store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item_name TEXT, brand TEXT, color TEXT, size INTEGER, quantity INTEGER, price INTEGER);
+
+INSERT INTO store VALUES (1, "Air Forces", "Nike", "Black", 7, 20, 60);
+INSERT INTO store VALUES (2, "Huraches", "Nike", "Olive", 10, 15, 55);
+INSERT INTO store VALUES (3, "Skate Shoes", "Vans", "Red", 8, 18, 45);
+INSERT INTO store VALUES (4, "Chuck Taylors", "Converse", "Black", 7, 25, 45);
+INSERT INTO store VALUES (5, "Checkered_Slip_ons", "Vans", "White", 10, 17, 55);
+INSERT INTO store VALUES (6, "Air Jordans", "Nike", "Red", 9, 12, 60);
+INSERT INTO store VALUES (7, "Non slips", "Sketchers", "Black", 10, 30, 55);
+INSERT INTO store VALUES (8, "High tops", "Converse", "White", 7, 20, 55);
+INSERT INTO store VALUES (9, "Work boots", "Grainger", "Brown", 10, 25, 60);
+INSERT INTO store VALUES (10, "Air Max", "Nike", "White", 6, 15, 60);
+INSERT INTO store VALUES (11, "Blazers", "Nike", "White", 7, 15, 55);
+INSERT INTO store VALUES (12, "Dunks", "Nike", "Red", 8, 20, 60);
+INSERT INTO store VALUES (13, "Rose Skulls", "Vans", "Red", 6, 15, 45);
+INSERT INTO store VALUES (14, "Yacht Clubs", "Vans", "Rainbow", 7, 20, 55);
+INSERT INTO store VALUES (15, "Crocs", "Crocs", "Red", 8, 15, 55);
+
+~Display store database ordered by price.
+SELECT * FROM store
+ORDER BY price;
+
+~Calculate average price of items within the "Nike" brand
+SELECT AVG(price)
+FROM store 
+WHERE brand="Nike";
+
+~How many items are available in Black?
+SELECT item_name, brand, color
+FROM store
+WHERE color="Black"
+ORDER BY brand;
+
