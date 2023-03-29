@@ -1,0 +1,56 @@
+~Create related tables regarding famous people
+
+CREATE TABLE MTV_Challenge_Winners (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT, challenge_wins INTEGER, age_now INTEGER);
+    
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Johnny Bananas",7,40);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Jordan Wiseley",3,33);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Amber Borzotra",1,35);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Tori Deal",1,30);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("CT",6,42);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Devin Walker",1,33);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Ashley Mitchell",2,35);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Kaycee Clark",1,35);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Wes Bergmann",3,38);
+INSERT INTO MTV_Challenge_Winners (name,challenge_wins, age_now) VALUES ("Darrell Taylor",4,43);
+
+
+CREATE TABLE Originally_Casted_On (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT, original_show TEXT, season_number INTEGER);
+
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Johnny Bananas", "The Real World", 17);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Jordan Wiseley", "The Real World",28);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Amber Borzotra", "Big Brother",16);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Tori Deal", "Are You The One", 4);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("CT", "The Real World", 13);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Devin Walker", "Are You The One", 3);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Ashley Mitchell", "The Real World", 29);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Kaycee Clark","Big Brother", 20);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Wes Bergmann", "The Real World", 16);
+INSERT INTO Originally_Casted_On (name,original_show,season_number) VALUES ("Darrell Taylor", "Road Rules", 11);
+
+
+~Display combined tables for easy readability
+
+SELECT mtv.age_now,mtv.name, mtv.challenge_wins, og.original_show
+FROM MTV_Challenge_Winners AS mtv
+JOIN Originally_Casted_On AS og
+ON mtv.name=og.name
+ORDER BY mtv.challenge_wins DESC;
+
+~ How many Challenge winners in the dataset originally came from The Real World?
+
+SELECT mtv.name, mtv.challenge_wins, og.original_show
+FROM MTV_Challenge_Winners AS mtv
+JOIN Originally_Casted_On AS og
+ON mtv.name=og.name
+WHERE og.original_show="The Real World"
+
+~Who are the youngest Challenge winners in the dataset?
+
+SELECT age_now,name,challenge_wins
+FROM MTV_Challenge_Winners
+WHERE age_now<35
+ORDER BY age_now;
