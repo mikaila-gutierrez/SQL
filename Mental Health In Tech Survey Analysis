@@ -1,0 +1,53 @@
+-- Survey Dataset taken from Kaggle: https://www.kaggle.com/datasets/anth7310/mental-health-in-the-tech-industry
+--Quick Database overview
+SELECT * FROM Question;
+
+SELECT * FROM Answer;
+
+SELECT * 
+FROM mental_health.Question AS Q
+JOIN mental_health.Answer AS A
+ON q.questionid=a.QuestionID;
+
+--Look at the number of participants for each survey
+
+SELECT surveyid, COUNT(DISTINCT(userid))
+FROM Answer 
+WHERE QuestionID=13 
+GROUP BY AnswerText;
+
+-- All countries surveyed
+
+SELECT DISTINCT(answertext)
+FROM Answer
+WHERE QuestionID=3
+ORDER BY answertext;
+
+-- Look at all answers for specific questions through question ID
+
+SELECT * 
+FROM mental_health.Question Q
+JOIN mental_health.Answer A
+ON q.questionid=a.QuestionID
+WHERE q.questionid=5;
+
+SELECT Q.Questiontext, A.UserID, A.AnswerText 
+FROM mental_health.Answer A
+JOIN mental_health.Question Q
+WHERE A.QuestionID = 10;
+
+-- Distribution of answers given for any specific question on a designated survey year
+
+SELECT AnswerText, COUNT(AnswerText)
+FROM Answer 
+WHERE QuestionID = 1 AND surveyid=2016 
+GROUP BY AnswerText;
+
+-- Responses on current mental health status 
+
+SELECT * 
+FROM mental_health.Question AS Q
+JOIN mental_health.Answer AS A
+ON q.questionid=a.QuestionID
+WHERE a.questionid=33
+AND Surveyid=2016;
