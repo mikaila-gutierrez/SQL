@@ -1,0 +1,44 @@
+-- Quick database overview search
+
+SELECT *
+FROM salaries
+LIMIT 5;
+
+SELECT DISTINCT(jobtitle)
+FROM salaries
+ORDER BY jobtitle;
+
+-- How many people receive a base pay of at least $100,000?
+
+SELECT COUNT(distinct(BasePay))
+FROM salaries
+WHERE basepay >= 100000;
+
+--What are the top 10 highest paying occupations in this SF database?
+
+SELECT jobtitle, totalpay
+FROM salaries
+ORDER BY totalpay DESC
+LIMIT 10;
+
+--Who holds more high paying positions? Are there more men or women in this bracket?
+
+SELECT employeename, jobtitle, totalpay
+FROM salaries
+ORDER BY totalpay DESC
+LIMIT 10;
+
+-- This query shows only 2/10 of these occupations are held by women for 'Asst Med Examiner'
+--Are there other 'Asst Med Examiners' in this database? Compare their salaries
+
+SELECT year, employeename, jobtitle, basepay, overtimepay, otherpay, totalpay
+FROM SALARIES
+WHERE jobtitle='Asst Med Examiner'
+ORDER BY totalpay DESC;
+
+--Based on prior query, Look at pay changes overtime for top earner, Ellen Moffatt
+
+SELECT employeename, jobtitle, basepay, overtimepay, otherpay, totalpay, year
+FROM salaries
+WHERE employeename LIKE '%Ellen%Moffatt%'
+ORDER BY year;
