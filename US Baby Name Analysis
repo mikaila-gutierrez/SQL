@@ -1,0 +1,56 @@
+-- Quick Database overview from Kaggle Dataset
+
+SELECT * FROM NationalNames;
+
+SELECT * FROM StateNames;
+
+-- National: Look into most popular baby names for girls in 2010
+
+SELECT DISTINCT(name), count, gender, year
+FROM NationalNames
+WHERE gender = 'F' AND year= 2010
+ORDER BY count DESC
+LIMIT 10;
+
+-- Compare most popular 2010 girl names to those in 1990
+
+SELECT DISTINCT(name), count, gender, year
+FROM NationalNames
+WHERE gender = 'F' AND year= 1990
+ORDER BY count DESC
+LIMIT 10;
+
+-- Interestingly there are no names that overlap in both years
+-- Look into least popular boy names in 2000 on the national level
+
+SELECT DISTINCT(name), count, gender, year
+FROM NationalNames
+WHERE gender = 'M' AND year = 2000
+ORDER BY count
+LIMIT 10;
+
+-- Now let's take a look at how baby name popularity compares within States
+
+SELECT DISTINCT(name), count, gender, state, year
+FROM StateNames
+WHERE year=2012 AND state='CA'
+ORDER BY count DESC
+LIMIT 10;
+
+SELECT DISTINCT(name), count, gender, state, year
+FROM StateNames
+WHERE year=2012 AND state='NY'
+ORDER BY count DESC
+LIMIT 10;
+
+-- Look into how many different 'J' boy names there were in 2010
+
+SELECT COUNT(DISTINCT(name)), gender, count, year
+FROM NationalNames
+WHERE year=2010 AND name LIKE 'J%' AND gender='M';
+
+-- How about the amount of different girl names there were in 1990
+
+SELECT COUNT(DISTINCT(name)), gender, year
+FROM NationalNames
+WHERE year=1990 AND gender='F';
